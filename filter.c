@@ -1,13 +1,13 @@
 /* 
  * @AUTOR Kamil Wieczorek
- * 2020
  */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <params.h>
+#include "params.h"
 #include <string.h>
 #include <math.h>
+#include <time.h>
 
 #define ARRAY_SIZE(x) (sizeof((x)) / sizeof((x)[0]))
 
@@ -22,6 +22,13 @@ int offset_filter2 = 0;
 int encode1_licznik = 0;
 int encode2_licznik = 0;
 int encode3_licznik = 0;
+
+double giveRandom()
+{
+    double a = 1.0;
+    srand((unsigned int)time(NULL));
+    return (((double)rand() / (double)(RAND_MAX)) * a);
+}
 
 static double iir(int x)
 {
@@ -68,13 +75,13 @@ static int iir_fixed(int x)
 
 static void filter3(int x)
 {
-    x = (int)round(iir_fixed(x) - drand48() + drand48());
+    x = (int)round(iir_fixed(x) - giveRandom() + giveRandom());
     printf("%d\n", x);
 }
 
 static void filter1(int x)
 {
-    x = (int)round(iir(x) - drand48() + drand48());
+    x = (int)round(iir(x) - giveRandom() + giveRandom());
     printf("%d\n", x);
 }
 
@@ -103,7 +110,7 @@ static double fir(int x)
 }
 static void filter2(int x)
 {
-    x = (int)round(fir(x) - drand48() + drand48());
+    x = (int)round(fir(x) - giveRandom() + giveRandom());
     printf("%d\n", x);
 }
 
@@ -140,7 +147,7 @@ static int fir_fixed(int x)
 
 static void filter4(int x)
 {
-    x = (int)round(fir_fixed(x) - drand48() + drand48());
+    x = (int)round(fir_fixed(x) - giveRandom() + giveRandom());
     printf("%d\n", x);
 }
 
