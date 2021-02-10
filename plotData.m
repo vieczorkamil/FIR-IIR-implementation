@@ -3,9 +3,9 @@ clc
 clear all
 close all
 %% load data
-fd = fopen('speech_example_8KHz.txt','r');
-fd1 = fopen('IIR.txt','r');
-fd2 = fopen('FIR.txt','r');
+fd = fopen('Example/example_sound','r');
+fd1 = fopen('Example/IIR','r');
+fd2 = fopen('Example/FIR','r');
 if(fd < 0 || fd1 < 0 || fd2 < 0 )
     disp("Can't open file");
     return;
@@ -18,8 +18,8 @@ fclose(fd);
 fclose(fd1);
 fclose(fd2);
 %% plot speech
-plotSpeech(y,y_iir,'Example sound - iir filter');
-plotSpeech(y,y_fir,'Example sound - fir filter');
+plotSignal(y,y_iir,'Example sound - iir filter');
+plotSignal(y,y_fir,'Example sound - fir filter');
 %% plot Power Spectral Density
 plotPSD(y,y_iir, 64000,'Power Spectral Density - iir filter');
 plotPSD(y,y_fir, 64000,'Power Spectral Density - fir filter');
@@ -30,7 +30,7 @@ function plotSignal(yBefore, yAfter, plotTitle)
     title(plotTitle);
     hold on
     plot(yAfter)
-    legend('Before', 'After');
+    legend('Before filtration', 'After filtration');
     xlabel('Sample number');
     ylabel('Sample value');
 end
@@ -45,7 +45,7 @@ function plotPSD(yBefore, yAfter, N, plotTitle)
     X_gwm = (abs(X_fft(1:N/2)).^2)/N/Tp;
     plot(0:N/2-1,10*log10(X_gwm));
     title(plotTitle);
-    legend('Before', 'After');
+    legend('Before filtration', 'After filtration');
     xlabel('Frequency [Hz]');
     ylabel('PSD [dB]');
     xlim([0 N/2])
