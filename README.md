@@ -1,6 +1,9 @@
 # FIR IIR implementation
 Implementation of irr and fir filters in c. Example of filter design and visualization using matlab. University assignment in digital signal processing.
 ## Example
+### Low pass filters
+![fir](Example/fir_filter.png)
+![iir](Example/iir_filter.png)
 ### Fir filter:
 ![fir sound graph](Example/Example_sound_fir.png)
 ![fir PSD graph](Example/PSD_fir.png)
